@@ -1,0 +1,47 @@
+<h2>
+    {{courseData.description}}
+</h2>
+
+<form [formGroup]="courseForm">
+    <mat-form-field appearance="legacy" class="w-100">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="description">
+        <mat-error *ngIf="f['description'].hasError('required')">
+            Description is a mandetory field.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="legacy" class="w-100">
+        <mat-label>long Description</mat-label>
+        <mat-select  formControlName="category">
+            <mat-option value="BEGINNER">
+                Beginners
+            </mat-option>
+            <mat-option value="ADVANCED">
+                Advanced
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field color="primary" 
+      appearance="legacy" class="w-100">
+        <mat-label>Released At</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="releasedAt">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error >
+            This fileld is Mandetory.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field   appearance="legacy" class="w-100">
+        <mat-label>Long Description</mat-label>
+        <textarea matInput formControlName="longDescription"></textarea>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button type="button" color="warn">Close</button>
+        <button mat-raised-button type="button"
+        (click)="saveCourse()"
+        [disabled]="courseForm.invalid"
+        color="primary">Save</button>
+      </mat-card-actions>
+</form>
